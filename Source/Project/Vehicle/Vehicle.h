@@ -4,6 +4,8 @@
 
 #include "GameFramework/Pawn.h"
 
+#include "ComponentController.h"
+
 #include "Vehicle.generated.h"
 
 class USpringArmComponent;
@@ -29,6 +31,8 @@ private:
 
 	USpringArmComponent* CameraSpringArm;
 	UCameraComponent* Camera;
+
+	ComponentController* CControler;
 
 	FVector2D MovementInput;
 };

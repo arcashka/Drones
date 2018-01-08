@@ -1,19 +1,18 @@
 #include "Vehicle.h"
 
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/InputSettings.h"
 #include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
 
 AVehicle::AVehicle()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	CControler = new ComponentController(GetDefault<UInputSettings>());
 
 	CameraSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraSpringArm"));
 	CameraSpringArm->SetupAttachment(CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent")));
 	CameraSpringArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 50.0f), FRotator(-60.0f, 0.0f, 0.0f));
-	CameraSpringArm->TargetArmLength = 400.f;
-	CameraSpringArm->bEnableCameraLag = true;
-	CameraSpringArm->CameraLagSpeed = 3.0f;
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("GameCamera"));
 	Camera->SetupAttachment(CameraSpringArm, USpringArmComponent::SocketName);
 
